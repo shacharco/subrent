@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "google-auth-library": "^7.11.0",
+    "js-yaml": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.5",
+    "node-yaml-config": "^1.0.0",
+    "passport": "^0.5.2",
+    "passport-google-oauth2": "^0.2.0",
+    "pug": "^3.0.2",
+    "sass": "^1.47.0"
+  }
+}
