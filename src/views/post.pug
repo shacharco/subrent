@@ -6,7 +6,7 @@ block page-head
 block page
     div#MainDiv
         p#post-result(v-if="success == true") Success!
-        form.sell-form#post-form(v-on:submit="handleFormSubmit($event)")
+        form.sell-form#post-form(v-on:submit.prevent="handleFormSubmit($event)")
             input.form-control(name="email" type="email" placeholder="Email" required)
             input.form-control(name="phone" type="tel" placeholder="Phone" required)
             input.form-control(name="location" type="text" placeholder="Location" required)

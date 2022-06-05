@@ -1,5 +1,5 @@
 var rentalsVue = new Vue({
-	el: '#results',
+	el: '#MainDiv',
 	data: {
 		rentals: {},
 		query: "",
@@ -15,35 +15,27 @@ var rentalsVue = new Vue({
 		removeItem: async function (rental){
 			const removed = await postRentalAsJson("/removeItem", rental);
 			this.updateRentals("/rentals", this.query);
-		}
+		},
+		handleSearch: async function (event){
+			event.preventDefault();
+			const searchTerm = document.getElementById("searchTerm");
+			const url = "/rentals";
+			try {
+				const query = {search: searchTerm.value};
+				this.updateRentals(url, query);
+			} catch (error) {
+				console.error(error);
+			}
+		},
 	},
 	created(){
 		getUser().then(user_info => {
 			this.user = user_info;
 		});
+		this.updateRentals("/rentals", {search: ""});
 	}
 });
 
-window.onload = function() {
-    const searchButton = document.getElementById("searchButton");
-    searchButton.addEventListener("click", handleSearch);
-	rentalsVue.updateRentals("/rentals", {search: ""});
-};
-async function handleSearch(event) {
-
-    event.preventDefault();
-	const searchTerm = document.getElementById("searchTerm");
-	const url = "/rentals";
-
-	try {
-
-		const query = {search: searchTerm.value};
-		rentalsVue.updateRentals(url, query);
-
-	} catch (error) {
-		console.error(error);
-	}
-}
 async function postSearchQueryAsJson({ url, query }) {
 	const fetchOptions = {
 

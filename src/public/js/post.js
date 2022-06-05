@@ -1,14 +1,14 @@
 import { fetchJson } from "./utils.js";
 
 var successVue = new Vue({
-	el: '#post-result',
+	el: '#MainDiv',
 	data: {
 		success: false
 	},
 	methods: {
 		handleFormSubmit: async function (event) {
-			console.log("handleee")
 			event.preventDefault();
+			console.log("handleee")
 			const form = event.currentTarget;
 			const url = "/rent";
 			try {
@@ -17,7 +17,9 @@ var successVue = new Vue({
 				const plainFormData = Object.fromEntries(formData.entries());
 				console.log(plainFormData)
 				const responseData = await fetchJson(url, plainFormData);
-				successVue.success = true;
+				if(responseData == true){
+					successVue.success = true;
+				}
 				console.log({ responseData });
 			} catch (error) {
 				console.error(error);

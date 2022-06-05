@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require("../db/db.js");
 const bodyParser = require("body-parser");
 const auth = require("../utils/auth.js");
+const sanitize = require('mongo-sanitize');
 
 router.use(bodyParser.json());
 
@@ -12,7 +13,7 @@ router.post("/user_info/", auth.checkAuthenticated, async function(req, res){
 
 router.post("/user_rentals/", auth.checkAuthenticated, async function(req, res){
   try {
-    let rentals = await db.listRentals({email: req.user.email});  
+    let rentals = await db.listRentals({email: sanitize(req.user.email)});  
     res.send(rentals);
   } catch(error) {
     console.log(error);
@@ -25,8 +26,8 @@ router.get("/user/", auth.checkAuthenticated, async function(req, res){
 });
 
 router.post("/removeItem", function(req, res){
-  console.log(req.body);
-  let result = db.removeRental(req.body);
+  console.log(sanitize(req.body));
+  let result = db.removeRental(sanitize(req.body));
   res.send(result);
 });
 
