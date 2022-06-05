@@ -14,3 +14,8 @@ export async function fetchJson(url, json) {
 	}
 	return response.json();
 }
+
+export async function getUser() {
+	let userData = await fetchJson("/user_info");
+	return userData;
+}

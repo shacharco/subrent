@@ -1,3 +1,5 @@
+import { getUser } from "./utils.js";
+
 var tabsVue = new Vue({
 	el: '#tabs',
 	data: {
@@ -10,21 +12,3 @@ var tabsVue = new Vue({
 		})
 	  }
 });
-
-async function getUser() {
-	const fetchOptions = {
-
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			"Accept": "application/json"
-		},
-		body: ""
-	};
-	const response = await fetch("/user_info", fetchOptions);
-	if (!response.ok) {
-		return undefined;
-	}
-	return response.json();
-}
-

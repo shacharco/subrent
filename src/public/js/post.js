@@ -27,35 +27,3 @@ var successVue = new Vue({
 		}
 	}
 });
-
-
-// window.onload = function() {
-//     const postForm = document.getElementById("post-form");
-//     console.log(postForm);
-
-//     postForm.addEventListener("submit", handleFormSubmit);
-
-// };
-
-
-async function postFormDataAsJson({ url, formData }) {
-	const plainFormData = Object.fromEntries(formData.entries());
-	const formDataJsonString = JSON.stringify(plainFormData);
-
-	const fetchOptions = {
-
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			"Accept": "application/json"
-		},
-		body: formDataJsonString,
-	};
-	const response = await fetch(url, fetchOptions);
-	if (!response.ok) {
-		const errorMessage = await response.text();
-		throw new Error(errorMessage);
-	}
-	return response.json();
-}
-

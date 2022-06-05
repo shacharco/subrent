@@ -1,4 +1,4 @@
-import { fetchJson } from "./utils.js";
+import { fetchJson, getUser } from "./utils.js";
 
 var userVue = new Vue({
 	el: '#user-profile',
@@ -9,7 +9,7 @@ var userVue = new Vue({
 		toShowResults: false
 	},
 	created(){
-		this.getUser().then(user_info => {
+		getUser().then(user_info => {
 			if(user_info){
 				this.getRentals().then(rentals => {
 					console.log(rentals)
@@ -30,15 +30,8 @@ var userVue = new Vue({
 
 			});
 		},
-		
 		showResults: function (){
 			this.toShowResults = !this.toShowResults;
-		},
-		getUser: async function () {
-			let userData = await fetchJson("/user_info", {});
-			console.log("user data");
-			console.log(userData);
-			return userData;
 		},
 		getRentals: async function () {
 			return await fetchJson("/user_rentals", {});

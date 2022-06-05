@@ -14,7 +14,10 @@ function escapeJSON(json){
         if(typeof(json) == 'string'){
             let words = json.split(" ");
             for(let i = 0; i < words.length; i++){
-                escaped += escape(words[i]) + " ";
+                escaped += escape(words[i]);
+                if(i < words.length-1){
+                    escaped += " ";
+                }
             }
         }else{
             escaped = escape(json);
