@@ -3,7 +3,8 @@ html
         title SubRent
         link(rel="icon" type="image/jpg" href="/public/icon.jpg")
         link(rel="stylesheet" href="/public/css/tabs.css")
-        script(src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js")
+        //- script(src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js")
+        script(src="/public/js/vue.min.js")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
         meta(name="google-signin-client_id" content="682669137976-g4okfnv7rfdkvd00crlmah2p2767075j.apps.googleusercontent.com")
         script(src="https://apis.google.com/js/platform.js")
@@ -16,7 +17,10 @@ html
                 div.et-hero-tabs-container
                     //- div.g-signin2(datia-onsuccess="onSignIn")    
                     //- div.signin(onclick="signIn();") Sign In
-                    a.signin(v-if="!user" href="/auth/google") Log In
+                    div.signin(v-if="!user", v-on:click="signin()") Log In
+                    //- form(v-if="!user" action="/auth/google", method="POST") 
+                    //-     input(type="text", name="email" value="admin")
+                    //-     button.signin(v-if="!user" type="submit") Log In
                     //- div.signout(v-if="user" onclick="signOut();") Log Out
                     a.signout(v-if="user" href="/logout") Log Out
                     a.et-hero-tab(href="/find") Find

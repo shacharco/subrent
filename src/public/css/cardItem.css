@@ -14,20 +14,11 @@
 
 .card__img {
   display: block;
-  width: 30%;
-  position: absolute;
-  top: 3%;
-  left: 3%;
-
+  width: 100%;
+  object-fit: cover;
 }
 .card__content {
   padding: 3%;
-  vertical-align: bottom;
-  /* position: absolute; */
-  top: 10%;
-  left: 3%;
-  width: 65%;
-  float: right;
 }
 .card__header {
   color: #0d0d0d;

@@ -9,7 +9,6 @@ function isJsonString(str) {
 function escapeJSON(json){
     let jsonString = JSON.stringify(json)
     if(!isJsonString(jsonString)){
-        console.log(json)
         let escaped = "";
         if(typeof(json) == 'string'){
             let words = json.split(" ");

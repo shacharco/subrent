@@ -37,4 +37,3 @@ var rentalsVue = new Vue({
 		this.updateRentals("/rentals", {search: ""});
 	}
 });
-window.v = rentalsVue;

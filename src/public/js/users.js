@@ -38,7 +38,3 @@ var userVue = new Vue({
 		}
 	}
 });
-
-
-
-

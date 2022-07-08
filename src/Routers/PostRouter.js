@@ -19,4 +19,12 @@ router.post("/rent", async function(req, res){
     let result = await db.createRental(sanitizer.escapeJSON(sanitize(req.body)));
     res.send(result);
 });
+
+router.get("/card/", function(req, res){
+    res.render("card", {});
+});
+router.post("/edit/", function(req, res){
+    res.render("card", {});
+});
+
 module.exports = router;

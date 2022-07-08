@@ -1,0 +1,15 @@
+link(rel="stylesheet" href="/public/css/cardItem.css")
+.grid__item
+    .card
+    
+        img.card__img(v-if="rental.category == 'cars'" src='https://media.istockphoto.com/photos/generic-modern-suv-car-in-concrete-garage-picture-id1307086567', alt='Car')
+        img.card__img(v-else-if="rental.category == 'food'" src='https://media.istockphoto.com/photos/arabic-and-middle-eastern-dinner-table-hummus-tabbouleh-salad-salad-picture-id1175505781', alt='Food')
+        img.card__img(v-else src='https://media.istockphoto.com/photos/mans-hands-giving-cheque-to-other-person-picture-id1130220065', alt='Other')
+        .card__content
+        button.card__remove__btn(v-if="user && rental.email == user.email" v-on:click="removeItem(rental)") X
+        h1.card__header {{rental.name}}
+        p.card__text
+            | Rent this {{rental.name}} for {{rental.price}} at {{rental.location}} from {{rental.email}}
+        a.card__btn(href="/card/") Explore
+            span &rarr;
+    
