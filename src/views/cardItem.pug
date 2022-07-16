@@ -10,6 +10,6 @@ link(rel="stylesheet" href="/public/css/cardItem.css")
         h1.card__header {{rental.name}}
         p.card__text
             | Rent this {{rental.name}} for {{rental.price}} at {{rental.location}} from {{rental.email}}
-        a.card__btn(href="/card/") Explore
+        a.card__btn(href="/card?id=rental.name") Explore
             span &rarr;
     

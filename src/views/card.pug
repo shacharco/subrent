@@ -3,6 +3,7 @@ block page-head
     link(rel="stylesheet" href="/public/css/card.css")
     script(type="module" src="/public/js/card.js" defer)
 block page
+    div#MainDiv
         .grid__item
             .card
                 //- img.card__img(v-if="rental.category == 'cars'" src='https://media.istockphoto.com/photos/generic-modern-suv-car-in-concrete-garage-picture-id1307086567', alt='Car')
@@ -13,6 +14,6 @@ block page
                     h1.card__header {{rental.name}}
                     p.card__text
                         | Rent this {{rental.name}} for {{rental.price}} at {{rental.location}} from {{rental.email}}
-                    a.card__btn(href="/card?rental={{rental.name}}") Explore
+                    a.card__btn(href="/card?rental={{rental.name}}") Exploree
                         span &rarr;
             

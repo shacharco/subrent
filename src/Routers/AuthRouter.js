@@ -1,33 +1,22 @@
 const express = require('express');
 const passport = require("passport");
+const bodyParser = require("body-parser");
 
 const router = express.Router();
+router.use(bodyParser.json());
 
-router.post('/auth/google',function(req, res, next) {
-  console.log(req.url);
-  console.log(req.headers);
-  console.log(req.body)
+router.post('/auth/local',function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
-      console.log("authenticate");
-      console.log(err);
-      console.log(user);
-      console.log(info);
-      // res.redirect("/");
+    req.logIn(user, (err)=>{
+      if(err){
+        return next(err);
+      }
+      return res.json(user);
+    });
   })(req, res, next);
 });
-// passport.authenticate('local', {successRedirect: "/find", failureRedirect: "/login"})
 
-// passport.authenticate('google', { scope: [ 'email', 'profile' ]})
-// );
-
-router.get("/auth/local/callback", (req, res, next) => {
-  console.log("callback")
-  passport.authenticate("local", (err, user, info) => {
-    console.log("redirect")
-    return res.redirect("/");
-  })(req, res, next);
-
-});
+passport.authenticate('google', { scope: [ 'email', 'profile' ]});
 
 router.get("/auth/google/callback", (req, res, next) => {
     passport.authenticate("google", (err, user, info) => {

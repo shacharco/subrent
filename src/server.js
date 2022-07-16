@@ -15,45 +15,34 @@ app.set('views',path.join(__dirname, 'views'));
 
 app.use(expressSession({
     secret: 'secret',
-    resave: true,
+    resave: false,
     saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-// passport.use(new GoogleStrategy({
-//     clientID:     config.GOOGLE_CLIENT_ID,
-//     clientSecret: config.GOOGLE_CLIENT_SECRET,
-//     callbackURL: "/auth/google/callback",
-//     passReqToCallback   : true
-//   }, (request, accessToken, refreshToken, profile, done) => {
-//       return done(null, profile);
-//   }
-// ));
+passport.use(new GoogleStrategy({
+    clientID:     config.GOOGLE_CLIENT_ID,
+    clientSecret: config.GOOGLE_CLIENT_SECRET,
+    callbackURL: "/auth/google/callback",
+    passReqToCallback   : true
+  }, (request, accessToken, refreshToken, profile, done) => {
+      return done(null, profile);
+  }
+));
 
 passport.use(new LocalStrategy( {
     usernameField: 'email',    // define the parameter in req.body that passport can use as username and password
-    passwordField: 'email'
+    passwordField: 'email',
 },
     (user, password, done) => {
-        console.log("local stra");
       return done(null, {username: "admin", email: "admin@mail.com"});
   }
 ));
-// passport.use(new LocalStrategy({  
-//     callbackURL: "/auth/local/callback",
-//     passReqToCallback   : true
-//     }, (user, password, done) => {
-//         console.log("local stra")
-//       return done(null, {username: "admin", email: "admin@mail.com"});
-//   }
-// ));
 
 passport.serializeUser((user, done) => {
-    console.log("serial")
     done(null, user)
  });
 passport.deserializeUser((user, done) => {
-    console.log("deserial")
     done (null, user)
 });
 

@@ -1,6 +1,6 @@
 export async function fetchJson(url, json) {
 	const fetchOptions = {
-
+		
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

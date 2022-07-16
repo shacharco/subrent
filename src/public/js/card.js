@@ -3,7 +3,9 @@ import { fetchJson } from "./utils.js";
 var cardVue = new Vue({
 	el: '#MainDiv',
 	data: {
-		success: false
+		success: false,
+		user: undefined,
+		rental: undefined
 	},
 	methods: {
 		handleFormSubmit: async function (event) {

@@ -8,13 +8,12 @@ var tabsVue = new Vue({
 	mounted: async function () {
 		this.$nextTick(async function () {
 		  this.user = await getUser();
-		  console.log(this.user)
 		})
 	  },
 	methods: {
 		signin: async function (){
-			let response = await fetchJson("/auth/google", {email:"admin"});
-			console.log(response)
+			let response = await fetchJson("/auth/local", {email:"admin"});
+			this.user = response;
 		}
 	}
 
