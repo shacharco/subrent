@@ -1,22 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const db = require("../db/db.js");
-const RentalsSchema = require("../db/schemas/RentalsSchema.js");
-const UsersSchema = require("../db/schemas/UsersSchema.js");
 const bodyParser = require("body-parser");
 const auth = require("../utils/auth.js");
-const sanitize = require('mongo-sanitize');
 const path = require('path');
+const user = require("../components/user");
 
 router.use(bodyParser.json());
 
-router.post("/user_info/", auth.checkAuthenticated, async function(req, res){
+router.get("/currentUser/", auth.checkAuthenticated, async function(req, res){
   res.send(req.user);
 });
 
-router.post("/user_rentals/", auth.checkAuthenticated, async function(req, res){
+router.get("/userRentals/", auth.checkAuthenticated, async function(req, res){
   try {
-    let rentals = await db.list({email: sanitize(req.user.email)}, RentalsSchema);  
+    let rentals = await user.getUserRentals(req.user.email);
     res.send(rentals);
   } catch(error) {
     console.log(error);
@@ -28,17 +25,16 @@ router.get("/user/", auth.checkAuthenticated, async function(req, res){
   res.sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
-router.post("/removeItem", function(req, res){
-  console.log(sanitize(req.body));
-  let result = db.remove(sanitize(req.body), RentalsSchema);
+router.delete("/item", async function(req, res){
+  let result = await user.removeUserRental(req.body);
   res.send(result);
 });
 
-router.post("/user", async function(req, res){
+router.get("/userInfo", async function(req, res){
   try {
-    let user = await db.getOneByField("email", sanitize(req.body.email), UsersSchema);
-    if(user) {
-      res.send(user);
+    let userResult = await user.getUserByEmail(req.query.email);
+    if(userResult) {
+      res.send(userResult);
     } else {
       res.send(undefined);
     }

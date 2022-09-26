@@ -1,8 +1,6 @@
 const express = require('express');
 const passport = require("passport");
 const bodyParser = require("body-parser");
-const db = require("../db/db.js");
-const UsersSchema = require("../db/schemas/UsersSchema.js");
 
 const router = express.Router();
 router.use(bodyParser.json());

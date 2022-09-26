@@ -9,7 +9,7 @@ const expressSession = require("express-session");
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 const LocalStrategy = require( 'passport-local' ).Strategy;
 const db = require("./db/db.js");
-const UsersSchema = require("./db/schemas/UsersSchema.js");
+const UsersSchema = require("./components/user/schemas/UsersSchema.js");
 
 const app = express();
 

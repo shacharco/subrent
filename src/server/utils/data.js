@@ -13,6 +13,9 @@ class DataHandler{
         return handledData;
 
     }
+    setNext(next){
+        this.next = next;
+    }
 }
 
 

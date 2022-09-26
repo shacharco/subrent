@@ -1,14 +1,16 @@
-export async function fetchJson(url, json) {
+export async function fetchJson(url, json, method="POST") {
 	const fetchOptions = {
 		
-		method: "POST",
+		method: method,
 		headers: {
 			"Content-Type": "application/json",
 			"Accept": "application/json"
-		},
-		body: JSON.stringify(json)
+		}
 	};
-	console.log(fetchOptions.body)
+	if(json){
+		fetchOptions.body = JSON.stringify(json);
+	}
+	console.log(fetchOptions)
 
 	const response = await fetch(url, fetchOptions);
 	if (!response.ok) {
@@ -19,5 +21,5 @@ export async function fetchJson(url, json) {
 }
 
 export async function getUser() {
-	return await fetchJson("/user_info");
+	return await fetchJson("/currentUser", null, "GET");
 }

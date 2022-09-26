@@ -27,13 +27,13 @@ export default {
     },
     methods: {
         updateRentals: async function (url, query){
-			const responseData = await fetchJson(url, query);
+			const responseData = await fetchJson(url+"?"+new URLSearchParams(query), null, "GET");
 			this.query = query;
 			this.rentals = responseData;
 			return responseData;
 		},
 		removeItem: async function (rental){
-			const removed = await fetchJson("/removeItem", rental);
+			const removed = await fetchJson("/item", rental, "DELETE");
 			this.updateRentals("/rentals", this.query);
 		},
 		handleSearch: async function (event){

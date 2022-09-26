@@ -56,8 +56,8 @@ export default {
     },
     mounted: async function(){
         console.log("mounted")
-        this.rental = await fetchJson("/rental", {id: this.$route.params.id});
-        this.user = await fetchJson("/user", {email: this.rental.email});
+        this.rental = await fetchJson("/rental?"+new URLSearchParams({id: this.$route.params.id}), null, "GET");
+        this.user = await fetchJson("/userInfo?"+new URLSearchParams({email: this.rental.email}), null, "GET");
         this.updateComments();
         this.updateRatings();
         console.log("rental user")
@@ -78,11 +78,11 @@ export default {
         },
         updateComments: async function(){
             console.log("updating comments")
-            this.comments = await fetchJson("/comments", {product: this.rental});
+            this.comments = await fetchJson("/comments?"+new URLSearchParams({productId: this.rental._id}), null, "GET");
         },
         updateRatings: async function(){
             console.log("updating ratings")
-            this.rating = (await fetchJson("/ratings", {product: this.rental})).rating;
+            this.rating = (await fetchJson("/ratings?"+new URLSearchParams({productId: this.rental._id}), null, "GET")).rating;
             console.log(this.rating);
         }
     },

@@ -48,7 +48,7 @@ export default {
 	},
 	methods:{
 		removeItem: async function (rental){
-			const removed = await fetchJson("/removeItem", rental);
+			const removed = await fetchJson("/item", rental, "DELETE");
 			this.getRentals().then(rentals => {
 				this.user.rentals = rentals;
 				this.toShowResults = false;
@@ -60,7 +60,7 @@ export default {
 			this.toShowResults = !this.toShowResults;
 		},
 		getRentals: async function () {
-			return await fetchJson("/user_rentals", {});
+			return await fetchJson("/userRentals", null, "GET");
 		}
 	}
 
