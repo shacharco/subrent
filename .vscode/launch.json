@@ -8,8 +8,15 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/src/server.js",
-            "runtimeExecutable": "nodemon",
+            // "program": "${workspaceFolder}/src/server/server.js",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "start"
+            ],
+            "env":{
+                "NODE_ENV": "development"
+            },
+            "outputCapture": "std"
 
         }
     ]

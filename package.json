@@ -1,19 +1,46 @@
 {
   "dependencies": {
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
+    "file-loader": "^6.2.0",
     "google-auth-library": "^7.11.0",
+    "html-loader": "^4.1.0",
+    "html-webpack-plugin": "^5.5.0",
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongo-sanitize": "^1.1.0",
     "mongoose": "^6.1.5",
     "node-yaml-config": "^1.0.0",
+    "npm-run-all": "^4.1.5",
     "passport": "^0.5.2",
     "passport-google-oauth2": "^0.2.0",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.2",
-    "sass": "^1.47.0"
+    "pug-html-loader": "^1.1.5",
+    "pug-loader": "^2.4.0",
+    "pug-plain-loader": "^1.1.0",
+    "pug-webpack-plugin": "^0.1.0",
+    "sass": "^1.47.0",
+    "style-loader": "^3.3.1",
+    "vue": "^2.7.8",
+    "vue-loader": "<=14.1.1",
+    "vue-pug-loader": "^1.1.27",
+    "vue-router": "^2.8.1",
+    "vuex": "^3.6.2",
+    "webpack": "^5.74.0",
+    "webpack-dev-middleware": "^5.3.3"
   },
+  "devDependencies": {
+    "@types/passport-local": "^1.0.34",
+    "@vue/compiler-sfc": "^3.2.37",
+    "webpack-cli": "^4.10.0"
+  },
+  "entry point": "./src/server/server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "build": "webpack --config ./src/webpack.config.js --mode development",
+    "start": "nodemon --signal SIGKILL ./src/server/server.js",
+    "all": "npm-run-all --sequential start"
   }
 }

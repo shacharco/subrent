@@ -1,0 +1,205 @@
+.product_head{
+  vertical-align: top;
+  /* position: absolute; */
+  top: 10%;
+  left: 3%;
+  width: 100%;
+  float: right;
+
+}
+.product_user{
+  vertical-align: bottom;
+  /* position: absolute; */
+  top: 10%;
+  left: 3%;
+  width: 35%;
+  float: left;
+  position: relative;
+
+}
+.product_comments{
+  vertical-align: bottom;
+  /* position: absolute; */
+  top: 10%;
+  left: 3%;
+  width: 65%;
+  float: right;
+  position: relative;
+
+}
+
+.comments_rating{
+  vertical-align: top;
+  width: 30%;
+  float: right;
+}
+.comments_title{
+  vertical-align: top;
+  width: 70%;
+  float: left;
+}
+.comment_input{
+  vertical-align: top;
+  width: 30%;
+  float: right;
+
+}
+.comment_text{
+  vertical-align: top;
+  width: 60%;
+  float: left;
+
+}
+.comment_button{
+  vertical-align: top;
+  float: left;
+
+}
+#image_wrap {
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  transform: translate(0%,  0%);
+  vertical-align: top;
+}
+.grid__item {
+  background-color: #fff;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.grid__item:hover {
+  transform: translateY(-0.5%);
+  box-shadow: 0 4rem 8rem rgba(0, 100, 100, 0.2);
+}
+
+.product__img {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 3%;
+  left: 3%;
+
+}
+.product__content {
+  vertical-align: bottom;
+  /* position: absolute; */
+  padding: 3%;
+  /* position: absolute; */
+  top: 10%;
+  left: 3%;
+  width: 65%;
+  float: right;
+}
+.product__header {
+  color: #0d0d0d;
+  margin-bottom: 3%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.product__text {
+  color: #3d3d3d;
+  margin-bottom: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.product__btn {
+  display: block;
+  width: 80%;
+  padding: 3%;
+  text-align: center;
+  color: #3363ff;
+  background-color: #e6ecff;
+  border: none;
+  border-radius: 10%;
+  transition: 0.2s;
+  /* transform: translate(8%,  -20%); */
+  cursor: pointer;
+  text-decoration: none;
+  vertical-align: bottom;
+  /* position: absolute; */
+  padding: 3%;
+  /* position: absolute; */
+  top: 10%;
+  left: 3%;
+  width: 65%;
+  float: right;
+}
+.product__btn span {
+  margin-left: 1rem;
+  transition: 0.2s;
+}
+.product__btn:hover, .product__btn:active {
+  background-color: #dce4ff;
+}
+.product__btn:hover span, .product__btn:active span {
+  margin-left: 1.5rem;
+}
+
+.product__remove__btn {
+  display: block;
+  width: 10%;
+  padding: 3%;
+  text-align: center;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 10%;
+  transition: 0.2s;
+  transform: translate(8%,  -20%);
+  cursor: pointer;
+  margin-right: 3%;
+  float: right;
+}
+.product__remove__btn:hover , .product__remove__btn:active   {
+  box-shadow: 0 0 3px black;;
+}
+.rating-label{
+  font-size: 32px;
+  color: #ccc;
+  content: '\2606'; /* optional. hollow star */
+}
+.rating-label.is-active{
+  color: orange;
+}
+/* make the current radio visually hidden */
+input[type=radio]{ 
+  -webkit-appearance: none;
+  margin: 0;
+  box-shadow: none; /* remove shadow on invalid submit */
+}
+
+/* generated content is now supported on input. supporting older browsers? change button above to {position: absolute; opacity: 0;} and add a label, then style that, and change all selectors to reflect that change */
+input[type=radio]::after {
+  content: '\2605';
+  font-size: 32px;
+}
+
+/* by default, if no value is selected, all stars are grey */
+input[type=radio]:invalid::after {
+  color: #ddd;
+}
+
+/* if the rating has focus or is hovered, make all stars darker */
+.rating:hover input[type=radio]:invalid::after,
+.rating:focus-within input[type=radio]:invalid::after
+{color: #888;}
+
+/* make all the stars after the focused one back to ligh grey, until a value is selected */
+.rating:hover input[type=radio]:hover ~ input[type=radio]:invalid::after,
+.rating input[type=radio]:focus ~ input[type=radio]:invalid::after  {color: #ddd;}
+
+
+/* if a value is selected, make them all selected */
+.rating input[type=radio]:valid {
+  color: orange;
+}
+/* then make the ones coming after the selected value look inactive */
+.rating input[type=radio]:checked ~ input[type=radio]:not(:checked)::after{
+  color: #ccc;
+  content: '\2606'; /* optional. hollow star */
+}

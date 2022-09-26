@@ -1,0 +1,47 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+.sell-form{
+  width: 30%;
+  position: absolute;
+  top: 3%;
+  left: 35%;
+  transform: translate(0%,  0%);
+  vertical-align: top;
+}
+select,
+input{
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 5px 5px 5px;
+  outline: none;
+  color: #9DBFAF;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+input[type=checkbox] {
+  width: 16px;
+  height: 16px;
+}
+
+button{
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+p {
+  /* display: inline-block; */
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
