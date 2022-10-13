@@ -49,29 +49,28 @@ module.exports = {
           }
         ]
       },
-      resolve: {
-        alias: {
-          'public': path.resolve(__dirname, './src/client/public')
-        },
-        extensions: ['', '.js', '.pug', '.vue', '.css']
-      },
+      // resolve: {
+      //   alias: {
+      //     'public': path.resolve(__dirname, './src/client/public')
+      //   },
+      //   extensions: ['', '.js', '.pug', '.vue', '.css']
+      // },
       devServer: {
         historyApiFallback: true,
         noInfo: true
       },
       // devtool: '#eval-source-map',
-      plugins: [
-        new HtmlWebpackPlugin({
-          filename: 'index.html',
-          template: path.resolve(__dirname, './client/public/views/index.pug'),
-          favicon: path.resolve(__dirname, './client/public/static/icon.jpg'),
-          inject: true
-        }),
-        // new VueLoader.VueLoaderPlugin()
-        // new webpack.optimize.OccurrenceOrderPlugin(),
-        // new webpack.HotModuleReplacementPlugin(),
-        // new webpack.NoErrorsPlugin()
-      ]
+      // plugins: [
+      //   new HtmlWebpackPlugin({
+      //     filename: 'index.html',
+      //     favicon: path.resolve(__dirname, './client/public/static/icon.jpg'),
+      //     inject: true
+      //   }),
+      //   // new VueLoader.VueLoaderPlugin()
+      //   // new webpack.optimize.OccurrenceOrderPlugin(),
+      //   // new webpack.HotModuleReplacementPlugin(),
+      //   // new webpack.NoErrorsPlugin()
+      // ]
     }
     
     if (process.env.NODE_ENV === 'production') {

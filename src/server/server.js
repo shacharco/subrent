@@ -70,10 +70,6 @@ for(routerName of fs.readdirSync(path.join(__dirname, config.routers))){
 app.use('/static', express.static(path.join(__dirname, '../client/public/static')));
 
 // define the home page route
-app.get("/", function(req, res){
-    res.redirect("/dist/");
-});
-// define the home page route
 app.get("*", function(req, res){
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
