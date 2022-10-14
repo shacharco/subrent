@@ -24,9 +24,10 @@
     "sass": "^1.47.0",
     "style-loader": "^3.3.1",
     "vue": "^2.7.8",
-    "vue-loader": "<=14.1.1",
+    "vue-loader": "^14.1.1",
     "vue-pug-loader": "^1.1.27",
     "vue-router": "^2.8.1",
+    "vue-template-compiler": "2.7.8",
     "vuex": "^3.6.2",
     "webpack": "^5.74.0",
     "webpack-dev-middleware": "^5.3.3"

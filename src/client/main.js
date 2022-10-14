@@ -20,5 +20,6 @@ function createApp(){
 // createApp();
 const app = createApp();
 app.$mount('#app');
+document.body.appendChild(app.$el);
 
 // module.exports = {createApp}

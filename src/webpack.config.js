@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const VueLoader = require("vue-loader");
+// const VueLoader = require("vue-loader");
 
 
 module.exports = {
@@ -49,28 +49,28 @@ module.exports = {
           }
         ]
       },
-      // resolve: {
-      //   alias: {
-      //     'public': path.resolve(__dirname, './src/client/public')
-      //   },
-      //   extensions: ['', '.js', '.pug', '.vue', '.css']
-      // },
+      resolve: {
+        alias: {
+          'public': path.resolve(__dirname, './src/client/public')
+        },
+        extensions: ['', '.js', '.pug', '.vue', '.css']
+      },
       devServer: {
         historyApiFallback: true,
         noInfo: true
       },
       // devtool: '#eval-source-map',
-      // plugins: [
-      //   new HtmlWebpackPlugin({
-      //     filename: 'index.html',
-      //     favicon: path.resolve(__dirname, './client/public/static/icon.jpg'),
-      //     inject: true
-      //   }),
-      //   // new VueLoader.VueLoaderPlugin()
+      plugins: [
+        new HtmlWebpackPlugin({
+          filename: 'index.html',
+          favicon: path.resolve(__dirname, './client/public/static/icon.jpg'),
+          inject: true
+        }),
+        // new VueLoader.VueLoaderPlugin()
       //   // new webpack.optimize.OccurrenceOrderPlugin(),
       //   // new webpack.HotModuleReplacementPlugin(),
       //   // new webpack.NoErrorsPlugin()
-      // ]
+      ]
     }
     
     if (process.env.NODE_ENV === 'production') {
