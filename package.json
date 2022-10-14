@@ -39,7 +39,7 @@
   },
   "entry point": "./src/server/server.js",
   "scripts": {
-    "build": "webpack --config ./src/webpack.config.js --mode development",
+    "build": "vite build ./src/client",
     "start": "nodemon --signal SIGKILL ./src/server/server.js",
     "all": "npm-run-all --sequential start"
   }

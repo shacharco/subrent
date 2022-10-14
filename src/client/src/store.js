@@ -1,10 +1,10 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import {fetchJson} from "./public/js/utils.js";
+// import Vue from 'vue';
+import {createStore} from 'vuex';
+import {fetchJson} from "./js/utils.js";
 
-Vue.use(Vuex)
+// Vue.use(Vuex)
 
-const store = new Vuex.Store({
+const store = new createStore({
   state: {
     user: undefined
   },

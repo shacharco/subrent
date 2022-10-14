@@ -29,8 +29,8 @@ main.et-main
             div.comment_input(v-if="$store.state.user")
                 H2 Rate
                 .rating
-                    input(v-for="x in 5" type="radio" name="rating" :value="x" :aria-label="x + ' star' + x>1?'s':''" v-model:checked="userRating" required)
-                input.comment_text(v-model="comment.text" type="text" placeholder="Enter a comment")
+                    //- input(v-for="x in 5" type="radio" name="rating" :value="x" :aria-label="x + ' star' + x>1?'s':''" v-model:checked="userRating" required)
+                //- input.comment_text(v-model="comment.text" type="text" placeholder="Enter a comment")
                 button.comment_button(v-on:click="sendComment()") send
                 p(v-if="comment.result") commented!
 

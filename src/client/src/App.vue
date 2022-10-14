@@ -15,7 +15,7 @@ div#app
 
 
 <script>
-import { getUser, fetchJson } from "../js/utils.js";
+import { getUser, fetchJson } from "./js/utils.js";
 
 export default {
     name: 'App',
@@ -37,5 +37,5 @@ export default {
 </script>
 
 <style>
-    @import '../css/tabs.css';
+    @import './css/tabs.css';
 </style>
