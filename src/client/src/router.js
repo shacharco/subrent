@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router';
-import Find from './public/components/Find.vue';
-import Post from './public/components/Post.vue';
-import User from './public/components/User.vue';
-import Product from './public/components/Product.vue';
+// import Vue from 'vue'
+import {createRouter, createWebHistory} from 'vue-router';
+import Find from './components/Find.vue';
+import Post from './components/Post.vue';
+import User from './components/User.vue';
+import Product from './components/Product.vue';
 
 const routes = [
   {
@@ -33,11 +33,11 @@ const routes = [
     component: Product,
   }
 ]
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 
-const router = new VueRouter({
+const router = createRouter({
   routes,
-  mode: 'history'
+  history: createWebHistory()
 })
 
 export default router

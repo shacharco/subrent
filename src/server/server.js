@@ -50,16 +50,16 @@ passport.deserializeUser((user, done) => {
     done (null, user)
 });
 
-if (process.env.NODE_ENV === 'development') {
-    var webpackConfig = require('../webpack.config.js')
-    var compiler = require('webpack')(webpackConfig)
-    var devMiddleware = require('webpack-dev-middleware')(compiler, {
-      publicPath: webpackConfig.output.publicPath,
-    })
-    app.use(devMiddleware)
-  } else {
-      app.use(express.static(__dirname + '../dist'));
-  }
+// if (process.env.NODE_ENV === 'development') {
+//     var webpackConfig = require('../webpack.config.js')
+//     var compiler = require('webpack')(webpackConfig)
+//     var devMiddleware = require('webpack-dev-middleware')(compiler, {
+//       publicPath: webpackConfig.output.publicPath,
+//     })
+//     app.use(devMiddleware)
+//   } else {
+//       app.use(express.static(__dirname + '../dist'));
+//   }
 
 for(routerName of fs.readdirSync(path.join(__dirname, config.routers))){
     console.log(routerName);
@@ -67,7 +67,7 @@ for(routerName of fs.readdirSync(path.join(__dirname, config.routers))){
     app.use(router);
 }
 
-app.use('/static', express.static(path.join(__dirname, '../client/public/static')));
+app.use('/assets', express.static(path.join(__dirname, '../dist/assets')));
 
 // define the home page route
 app.get("*", function(req, res){
