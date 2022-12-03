@@ -1,3 +1,4 @@
+const sanitizer = require("../../utils/sanitize.js");
 
 class Product{
     name
@@ -8,14 +9,15 @@ class Product{
     category
     quantity
     constructor(name, price, user, phone, location, category, quantity){
-        this.name = name;
-        this.price = price;
-        this.user = user;
-        this.category = category;
-        this.quantity = quantity;
-        this.phone = phone;
-        this.location = location;
+        this.name = sanitizer.escapeJSON(name);
+        this.price = sanitizer.escapeJSON(price);
+        this.user = sanitizer.escapeJSON(user);
+        this.category = sanitizer.escapeJSON(category);
+        this.quantity = sanitizer.escapeJSON(quantity);
+        this.phone = sanitizer.escapeJSON(phone);
+        this.location = sanitizer.escapeJSON(location);
     }
+
     toJson(){
         return {
             name: this.name,
@@ -28,4 +30,12 @@ class Product{
         }
     }
 
+    toString(){
+        return JSON.stringify(this.toJson());
+    }
+
+}
+
+module.exports = { 
+    Product
 }

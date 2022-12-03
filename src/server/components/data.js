@@ -16,6 +16,13 @@ class DataHandler{
     setNext(next){
         this.next = next;
     }
+    setLast(next){
+        let last = this.next;
+        while(last.next){
+            last = last.next;
+        }
+        last.next = next;
+    }
 }
 
 

@@ -1,28 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require("body-parser");
-const auth = require("../utils/auth.js");
-const path = require('path');
+const {checkAuthenticated} = require("./auth/helper.js");
 const user = require("../components/user");
+const logger = require("../utils/logger.js");
 
 router.use(bodyParser.json());
 
-router.get("/currentUser/", auth.checkAuthenticated, async function(req, res){
+router.get("/currentUser/", checkAuthenticated, async function(req, res){
   res.send(req.user);
 });
 
-router.get("/userRentals/", auth.checkAuthenticated, async function(req, res){
+router.get("/userRentals/", checkAuthenticated, async function(req, res){
   try {
     let rentals = await user.getUserRentals(req.user.email);
     res.send(rentals);
   } catch(error) {
-    console.log(error);
+    logger.err(error);
     res.send([]);
   }
-});
-
-router.get("/user/", auth.checkAuthenticated, async function(req, res){
-  res.sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
 router.delete("/item", async function(req, res){
@@ -39,10 +35,20 @@ router.get("/userInfo", async function(req, res){
       res.send(undefined);
     }
   } catch(error) {
-    console.log(error);
+    logger.err(error);
     res.send(undefined);
   }
 
+});
+
+router.post("/signup", async function(req, res){
+  if (!req.body.username){
+    req.body.username = req.body.email;
+  }
+  await user.createUser();
+});
+router.post("/forgot", async function(req, res){
+  user.reset();
 });
 
 module.exports = router;

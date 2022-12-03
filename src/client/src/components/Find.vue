@@ -27,21 +27,27 @@ export default {
     },
     methods: {
         updateRentals: async function (url, query){
+			console.log("updateingrentals");
+			console.log(url);
+			console.log(query);
+			console.log(url+"?"+new URLSearchParams(query));
 			const responseData = await fetchJson(url+"?"+new URLSearchParams(query), null, "GET");
+			console.log("updated");
+			console.log(responseData);
 			this.query = query;
 			this.rentals = responseData;
 			return responseData;
 		},
 		removeItem: async function (rental){
-			const removed = await fetchJson("/item", rental, "DELETE");
-			this.updateRentals("/rentals", this.query);
+			const removed = await fetchJson("/api/item", rental, "DELETE");
+			this.updateRentals("/api/rentals", this.query);
 		},
 		handleSearch: async function (event){
 			event.preventDefault();
 			const searchTerm = document.getElementById("searchTerm");
-			const url = "/rentals";
+			const url = "/api/rentals";
 			try {
-				const query = {search: searchTerm.value};
+				const query = {search: JSON.stringify({"name": searchTerm.value})};
 				this.updateRentals(url, query);
 			} catch (error) {
 				console.error(error);
@@ -49,7 +55,7 @@ export default {
 		}
 	},
 	created(){
-		this.updateRentals("/rentals", {search: ""});
+		this.updateRentals("/api/rentals", {search: "{}"});
 	}
 }
 </script>

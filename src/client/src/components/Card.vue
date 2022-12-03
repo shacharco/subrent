@@ -9,7 +9,7 @@
             h1.card__header {{rental.name}}
             p.card__text
                 | Rent this {{rental.name}} for {{rental.price}} at {{rental.location}} from {{rental.email}}
-        router-link(:to="{name: 'product', params: {id: rental._id}}")
+        router-link(:to="{name: 'product', params: {id: rental.id}}")
             div.card__btn() Explore
                 span &rarr;
 </template>

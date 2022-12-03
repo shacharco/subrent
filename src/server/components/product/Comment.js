@@ -1,12 +1,13 @@
+const sanitizer = require("../../utils/sanitize.js");
 
 class Comment{
     product
     user
     text
     constructor(product, user, text){
-        this.product = product;
-        this.user = user;
-        this.text = text;
+        this.product = sanitizer.escapeJSON(product);
+        this.user = sanitizer.escapeJSON(user);
+        this.text = sanitizer.escapeJSON(text.slice(0,100));
     }
 
     toJson(){
@@ -15,6 +16,10 @@ class Comment{
             user: this.user,
             text: this.text
         }
+    }
+    
+    toString(){
+        return JSON.stringify(this.toJson());
     }
 }
 

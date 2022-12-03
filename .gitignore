@@ -40,6 +40,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+package-lock.json
 
 # TypeScript v1 declaration files
 typings/
@@ -105,7 +106,4 @@ dist
 
 # Secret
 client_secret*
-config.yml
-
-# Compiled webpack
-build
+env.yml

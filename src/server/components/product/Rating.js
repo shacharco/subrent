@@ -1,12 +1,14 @@
 
+const sanitizer = require("../../utils/sanitize.js");
+
 class Rating{
     product
     user
     value
     constructor(product, user, value){
-        this.product = product;
-        this.user = user;
-        this.value = value || 0;
+        this.product = sanitizer.escapeJSON(product);
+        this.user = sanitizer.escapeJSON(user);
+        this.value = value <= 5 && value > 0 ? value : 0;
     }
 
     toJson(){
@@ -15,6 +17,10 @@ class Rating{
             user: this.user,
             value: this.value
         }
+    }
+
+    toString(){
+        return JSON.stringify(this.toJson());
     }
 }
 

@@ -1,4 +1,5 @@
 export async function fetchJson(url, json, method="POST") {
+	const baseUrl = "http://localhost:8080";
 	const fetchOptions = {
 		
 		method: method,
@@ -21,5 +22,5 @@ export async function fetchJson(url, json, method="POST") {
 }
 
 export async function getUser() {
-	return await fetchJson("/currentUser", null, "GET");
+	return await fetchJson("/api/currentUser", null, "GET");
 }
