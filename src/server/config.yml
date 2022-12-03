@@ -1,0 +1,7 @@
+routers: "./Routers"
+port: 8080
+db_connection_string: "mongodb://localhost:27017/release"
+authKeys:
+  google:
+    clientID: "$GOOGLE_CLIENT_ID"
+    clientSecret: "$GOOGLE_CLIENT_SECRET"

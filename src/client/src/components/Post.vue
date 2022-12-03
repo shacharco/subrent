@@ -35,7 +35,7 @@ export default {
 			event.preventDefault();
 			console.log("handleee")
 			const form = event.currentTarget;
-			const url = "/rent";
+			const url = "/api/rent";
 			try {
 				console.log(url)
 				const formData = new FormData(form);

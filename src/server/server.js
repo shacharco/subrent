@@ -3,75 +3,59 @@ var fs = require('fs');
 const path = require('path');
 var config = yaml_config.load(fs.readFileSync(path.join(__dirname, 'config.yml')));
 const express = require('express');
-const passport = require("passport");
-const jwt = require("jsonwebtoken");
+const cookieParser	= require("cookie-parser");
 const expressSession = require("express-session");
-const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-const LocalStrategy = require( 'passport-local' ).Strategy;
-const db = require("./db/db.js");
-const UsersSchema = require("./components/user/schemas/UsersSchema.js");
-
 const app = express();
 
+app.use(cookieParser());
 app.use(expressSession({
     secret: 'secret',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        // session expiration is set by default to one week
+        maxAge: 7 * 24 * (60 * 60 * 1000),
+
+        // httpOnly flag makes sure the cookie is only accessed
+        // through the HTTP protocol and not JS/browser
+        httpOnly: true,
+
+        // secure cookie should be turned to true to provide additional
+        // layer of security so that the cookie is set only when working
+        // in HTTPS mode.
+        secure: false
+    }
 }));
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new GoogleStrategy({
-    clientID:     config.GOOGLE_CLIENT_ID,
-    clientSecret: config.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/auth/google/callback",
-    passReqToCallback   : true
-  }, (request, accessToken, refreshToken, profile, done) => {
-      return done(null, profile);
-  }
-));
 
-passport.use(new LocalStrategy( {
-    usernameField: 'email',    // define the parameter in req.body that passport can use as username and password
-    passwordField: 'email',
-},
-    async function(user, password, done) {
-        let existingUser = await db.getOneByField("email", user, UsersSchema);
-        if(!existingUser){
-            existingUser = await db.create(user, UsersSchema);
-        }  
-        return done(null, {_id: existingUser._id, username: "admin", email: "admin@gmail.com"});
-  }
-));
-
-passport.serializeUser((user, done) => {
-    done(null, user)
- });
-passport.deserializeUser((user, done) => {
-    done (null, user)
-});
-
-// if (process.env.NODE_ENV === 'development') {
-//     var webpackConfig = require('../webpack.config.js')
-//     var compiler = require('webpack')(webpackConfig)
-//     var devMiddleware = require('webpack-dev-middleware')(compiler, {
-//       publicPath: webpackConfig.output.publicPath,
-//     })
-//     app.use(devMiddleware)
-//   } else {
-//       app.use(express.static(__dirname + '../dist'));
-//   }
-
-for(routerName of fs.readdirSync(path.join(__dirname, config.routers))){
-    console.log(routerName);
-    let router = require(path.join(__dirname, config.routers, routerName))
-    app.use(router);
-}
-
-app.use('/assets', express.static(path.join(__dirname, '../dist/assets')));
+app.use('/assets', express.static(path.join(__dirname, '../client/dist/assets')));
 
 // define the home page route
-app.get("*", function(req, res){
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
+app.get("/", function(req, res){
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
+// define the home page route
+app.get("/find", function(req, res){
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+// define the home page route
+app.get("/post", function(req, res){
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+// define the home page route
+app.get("/user", function(req, res){
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+// define the home page route
+app.get("/register", function(req, res){
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+
+const {init} = require("./routers/auth/helper.js");
+init(app);
+app.use("/auth", require("./routers/auth.js"));
+app.use("/api/", require("./routers/products.js"));
+app.use("/api/", require("./routers/users.js"));
+app.use("/health/", require("./routers/health.js"));
+app.use(require("./routers/errors.js"));
 
 app.listen(config.port);

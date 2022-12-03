@@ -7,11 +7,80 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            // "program": "${workspaceFolder}/src/server/server.js",
+            "name": "Launch All",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "all"
+            ],
+            "env":{
+                "NODE_ENV": "production"
+            },
+            "outputCapture": "std"
+
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Frontend Watch",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "start-client"
+            ],
+            "env":{
+                "NODE_ENV": "development"
+            },
+            "outputCapture": "std"
+
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Server Watch",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
                 "run-script", "start"
+            ],
+            "env":{
+                "NODE_ENV": "development"
+            },
+            "outputCapture": "std"
+
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "DB Watch",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "start-db"
+            ],
+            "env":{
+                "NODE_ENV": "development"
+            },
+            "outputCapture": "std"
+
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mongo Launch",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "start-mongo"
+            ],
+            "env":{
+                "NODE_ENV": "development"
+            },
+            "outputCapture": "std"
+
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "test"
             ],
             "env":{
                 "NODE_ENV": "development"

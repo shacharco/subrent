@@ -1,15 +1,20 @@
 {
   "dependencies": {
+    "@grpc/grpc-js": "^1.7.3",
     "babel-loader": "^8.2.5",
+    "cookie-parser": "^1.4.6",
     "css-loader": "^6.7.1",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "file-loader": "^6.2.0",
     "google-auth-library": "^7.11.0",
+    "graphql": "^16.6.0",
+    "graphql-server-express": "^1.4.1",
+    "grpc-caller": "^0.14.0",
     "html-loader": "^4.1.0",
-    "html-webpack-plugin": "^5.5.0",
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
     "mongo-sanitize": "^1.1.0",
     "mongoose": "^6.1.5",
     "node-yaml-config": "^1.0.0",
@@ -20,7 +25,6 @@
     "pug": "^3.0.2",
     "pug-html-loader": "^1.1.5",
     "pug-plain-loader": "^1.1.0",
-    "pug-webpack-plugin": "^0.1.0",
     "sass": "^1.47.0",
     "style-loader": "^3.3.1",
     "vue": "^2.7.8",
@@ -29,18 +33,22 @@
     "vue-router": "^2.8.1",
     "vue-template-compiler": "2.7.8",
     "vuex": "^3.6.2",
-    "webpack": "^5.74.0",
-    "webpack-dev-middleware": "^5.3.3"
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@types/passport-local": "^1.0.34",
     "@vue/compiler-sfc": "^3.2.37",
-    "webpack-cli": "^4.10.0"
+    "jest": "^29.3.1"
   },
   "entry point": "./src/server/server.js",
   "scripts": {
     "build": "vite build ./src/client",
+    "start-mongo": "mongod --dbpath D:\\Programs\\MongoDB\\data\\db",
+    "start-db": "nodemon --signal SIGKILL ./src/data/db_server.js",
+    "start-client": "vite ./src/client",
     "start": "nodemon --signal SIGKILL ./src/server/server.js",
-    "all": "npm-run-all --sequential start"
+    "test": "jest --runInBand",
+    "all": "npm-run-all --sequential build start",
+    "dev": "npm-run-all --parallel start-db start start-client"
   }
 }

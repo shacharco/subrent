@@ -31,5 +31,5 @@ function escapeJSON(json){
 
 }
 module.exports = {
-    escapeJSON
+    escapeJSON, isJsonString
 }

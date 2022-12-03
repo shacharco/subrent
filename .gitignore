@@ -105,7 +105,4 @@ dist
 
 # Secret
 client_secret*
-config.yml
-
-# Compiled webpack
-build
+env.yml

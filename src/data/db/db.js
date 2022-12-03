@@ -2,15 +2,22 @@ const mongoose = require('mongoose');
 var yaml_config = require('js-yaml');
 var fs = require('fs');
 const path = require('path');
-const config = yaml_config.load(fs.readFileSync(path.join(__dirname, '..', 'config.yml')));
+const config = yaml_config.load(fs.readFileSync(path.join(__dirname, 'config.yml')));
+const logger = require("../../server/utils/logger.js");
 
-mongoose.connect(config.db_connection_string, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(config.db_connection_string, { useUnifiedTopology: true, useNewUrlParser: true }, (err) => {
+    if(err){
+        
+        logger.err(err)
+    }else{
+        logger.info("connected")
+    }
+});
 const connection = mongoose.connection;
 
 connection.once("open", function() {
-  console.log("MongoDB database connection established successfully");
+  logger.info("MongoDB database connection established successfully");
 });
-console.log(connection);
 
 async function create(element, schema){
     try {
@@ -22,13 +29,14 @@ async function create(element, schema){
     }
 }
 async function remove(element, schema){
+    let res = true;
     try {
-        const res = await schema.deleteOne(element);
+        res = await schema.deleteOne(element);
     } catch(error) {
         console.error(error)
         return false;
     }
-    return true;
+    return res.deletedCount;
 }
 async function listByFieldRegex(field, value, schema){
     const query = `{ "${field}": { "$regex": "${value}", "$options": "i" }}`;
@@ -64,6 +72,7 @@ async function validateExists(field, id, schema){
     let results = await listByField(field, id, schema);
     return results?.length > 0;
 }
+
 module.exports = {
     create, list, listByField, listByFieldRegex, remove, getOne, getOneByField, validateExists
 }

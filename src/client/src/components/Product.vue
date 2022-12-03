@@ -14,12 +14,12 @@ main.et-main
             //- div.product__btn(v-on:click="gotoCard(rental)") Explore
             //-     span &rarr;
         div.product_user
-            H2 About {{ user.username }}
+            h2 About {{ user.username }}
             p email: {{ user.email }}
         div.product_comments
             div.comments_head
                 div.comments_title
-                    H2 Comments
+                    h2 Comments
                     span.rating-label(v-for="x in 5" :class="x <= rating ? 'is-active': ''" ) &#9733
                     div.comments
                         p(v-for="c in comments" class=c) {{ c.text }} by {{ c.username }}
@@ -27,10 +27,10 @@ main.et-main
 
 
             div.comment_input(v-if="$store.state.user")
-                H2 Rate
+                h2 Rate
                 .rating
-                    //- input(v-for="x in 5" type="radio" name="rating" :value="x" :aria-label="x + ' star' + x>1?'s':''" v-model:checked="userRating" required)
-                //- input.comment_text(v-model="comment.text" type="text" placeholder="Enter a comment")
+                    input(v-for="x in 5" type="radio" name="rating" :value="x" :aria-label="x + ' star' + x>1?'s':''" @change="sendRating(x)" required)
+                input.comment_text(v-model="comment.text" type="text" placeholder="Enter a comment")
                 button.comment_button(v-on:click="sendComment()") send
                 p(v-if="comment.result") commented!
 
@@ -56,8 +56,8 @@ export default {
     },
     mounted: async function(){
         console.log("mounted")
-        this.rental = await fetchJson("/rental?"+new URLSearchParams({id: this.$route.params.id}), null, "GET");
-        this.user = await fetchJson("/userInfo?"+new URLSearchParams({email: this.rental.email}), null, "GET");
+        this.rental = await fetchJson("/api/rental?"+new URLSearchParams({id: this.$route.params.id}), null, "GET");
+        this.user = await fetchJson("/api/userInfo?"+new URLSearchParams({email: this.rental.email}), null, "GET");
         this.updateComments();
         this.updateRatings();
         console.log("rental user")
@@ -71,35 +71,45 @@ export default {
             }
             console.log(comment)
             console.log(this.userRating)
-            let res = await fetchJson("/comment", comment);
+            let res = await fetchJson("/api/comment", comment);
             console.log(res)
             this.updateComments();
             this.comment.result = res != undefined;
         },
         updateComments: async function(){
             console.log("updating comments")
-            this.comments = await fetchJson("/comments?"+new URLSearchParams({productId: this.rental._id}), null, "GET");
+            this.comments = await fetchJson("/api/comments?"+new URLSearchParams({productId: this.rental.id}), null, "GET");
         },
         updateRatings: async function(){
             console.log("updating ratings")
-            this.rating = (await fetchJson("/ratings?"+new URLSearchParams({productId: this.rental._id}), null, "GET")).rating;
+            this.rating = (await fetchJson("/api/ratings?"+new URLSearchParams({productId: this.rental.id}), null, "GET")).rating;
             console.log(this.rating);
-        }
-    },
-    watch: {
-        userRating: async function(val){
+        },
+        sendRating: async function(val){
             console.log(val)
             let rating = {
                 product: this.rental,
                 value: val
             }
-            let res = await fetchJson("/rating", rating);
+            let res = await fetchJson("/api/rating", rating);
             console.log(res)
             this.updateRatings();
-
-
         }
-    }
+    },
+    // watch: {
+    //     userRating: async function(val){
+    //         console.log(val)
+    //         let rating = {
+    //             product: this.rental,
+    //             value: val
+    //         }
+    //         let res = await fetchJson("/api/rating", rating);
+    //         console.log(res)
+    //         this.updateRatings();
+
+
+    //     }
+    // }
 }
 </script>
 
