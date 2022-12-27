@@ -20,6 +20,7 @@ module.exports = function() {
 			callbackURL: "/auth/google/callback",
 			passReqToCallback: true
 		}, function(req, accessToken, refreshToken, profile, done) {
+			done(null, profile);
 			// logger.info("Received profile: ", profile);
 
 			// helper.linkToSocialAccount({

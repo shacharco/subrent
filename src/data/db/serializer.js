@@ -14,8 +14,7 @@ function serialize(element){
     }
     return sanitize(element);
 }
-function deserializeOne(element){
-    let json = element.toObject();
+function deserializeOne(json){
     json.id = json._id.toString();
     delete json._id;
     return json;
@@ -23,10 +22,12 @@ function deserializeOne(element){
 function deserialize(element){
     if(Array.isArray(element)){
         for(let i = 0; i < element.length; i++){
-            element[i] = deserializeOne(element[i]);
+            element[i] = deserialize(element[i]);
         }
         return element;
     } else if (element.toObject){
+        return deserializeOne(element.toObject());
+    } else if (element._id){
         return deserializeOne(element);
     } else {
         return element;

@@ -1,6 +1,7 @@
 "use strict";
 
 let passport 		= require("passport");
+const { getUser, getUserByEmail } = require("../../components/user/index.js");
 let User 			= require("../../components/user/User.js");
 
 function checkAuthenticated(req, res, next) {
@@ -17,25 +18,18 @@ function init(app) {
 	app.use(passport.session());	
 
 	passport.serializeUser(function(user, done) {
-		return done(null, user.id);
+		return done(null, user.email);
 	});
 
-	passport.deserializeUser(function(id, done) {
-        if(id == "admin@gmail.com"){
-            return done(null, {username: "admin", password: "admin", email: id, id})
+	passport.deserializeUser(async function(email, done) {
+        if(email == "admin@gmail.com"){
+            return done(null, {username: "admin", password: "admin", email, id: email})
         }
-		User.findOne({
-			_id: id
-		}, "-password", function(err, user) {
-			if (err)
-				return done(err);
-			
-			// Check that the user is not disabled or deleted
-			if (!user)
-				return done(null, false);
-
+		let user = await getUserByEmail(email);
+		if(user){
 			return done(null, user);
-		});
+		}
+		return done(null, false);
 	});
 
 	function requireAll() { 

@@ -4,7 +4,7 @@ const sanitizer = require("../../utils/sanitize.js");
 class User{
     name
     email
-    pasword
+    password
     phone
     constructor(name, email, password, phone){
         this.name = sanitizer.escapeJSON(name);

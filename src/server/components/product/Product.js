@@ -8,7 +8,8 @@ class Product{
     location
     category
     quantity
-    constructor(name, price, user, phone, location, category, quantity){
+    image
+    constructor(name, price, user, phone, location, category, quantity, image){
         this.name = sanitizer.escapeJSON(name);
         this.price = sanitizer.escapeJSON(price);
         this.user = sanitizer.escapeJSON(user);
@@ -16,6 +17,7 @@ class Product{
         this.quantity = sanitizer.escapeJSON(quantity);
         this.phone = sanitizer.escapeJSON(phone);
         this.location = sanitizer.escapeJSON(location);
+        this.image = image;
     }
 
     toJson(){
@@ -26,7 +28,8 @@ class Product{
             phone: this.phone,
             location: this.location,
             category: this.category,
-            quantity: this.quantity
+            quantity: this.quantity,
+            image: this.image.path
         }
     }
 

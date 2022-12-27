@@ -1,17 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Quicksand:300,400|Lato:400,300|Coda|Open+Sans);
 
-/* 
-* Art by @jofpin 
-* 2014
-*/
-body {
-  background: #f8f5f0;
-  font-family: "Open sans", sans-serif;
-}
-a {
-  text-decoration: none;
-  color: #3498db;
-}
 .content-profile-page {
   margin: 1em auto;
   width: 44.23em;
@@ -25,16 +12,16 @@ a {
   margin-bottom: 1em; 
 }
 
-.profile-user-page .img-user-profile {
+.img-user-profile {
 	margin: 0 auto;
   text-align: center; 
 }
-.profile-user-page .img-user-profile .profile-bgHome {
+ .img-user-profile .profile-bgHome {
 	border-bottom: .2em solid #f5f5f5;
   width: 44.23em;
   height: 16em;
   }
-.profile-user-page .img-user-profile .avatar {
+ .img-user-profile .avatar {
 	margin: 0 auto;
   background: #fff;
   width: 7em;
@@ -44,47 +31,31 @@ a {
   margin-top: -10em;
   box-shadow: 0 0 .1em rgba(0, 0, 0, 0.35);
 }
-/* .profile-user-page button {
-	position: absolute;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-  width: 7em; 
-  background: #3498db;
-  border: 1px solid #2487c9;
-  color: #fff;
-  outline: none;
-  border-radius: 0 .6em .6em 0;
-  padding: .80em;
-}
 
-.profile-user-page button:hover {
-  background: #51a7e0;
-  transition: background .2s ease-in-out;
-  border: 1px solid #2487c9;
-} */
-.profile-user-page .user-profile-data, .profile-user-page .description-profile {
+ .user-profile-data,  .description-profile {
   text-align: center;
   padding: 0 1.5em; 
 }
-.profile-user-page .user-profile-data h1 {
+ /* .user-profile-data h1 {
   font-family: "Lato", sans-serif;
   margin-top: 0.35em;
   color: #292f33;
   margin-bottom: 0; 
-}
-.profile-user-page .user-profile-data p {
+} */
+ /* .user-profile-data p {
 	font-family: "Lato", sans-serif;
   color: #8899a6; 
   font-size: 1.1em;
   margin-top: 0;
   margin-bottom: 0.5em; 
-}
-.profile-user-page .description-profile {
+} */
+ /* .description-profile {
   color: #75787b;
   font-size: 0.98em; 
-}
-.profile-user-page .data-user {
+} */
+
+
+.data-user {
 	font-family: "Quicksand", sans-serif;
   margin-bottom: 0;
   cursor: pointer;
@@ -93,7 +64,7 @@ a {
   display: table;
   width: 100.15%; 
 }
-.profile-user-page .data-user li {
+.data-user li {
   margin: 0;
   padding: 0;
   width: 33.33334%;
@@ -101,19 +72,19 @@ a {
   text-align: center;
   border-left: 0.1em solid transparent; 
 }
-.profile-user-page .data-user li:first-child {
+.data-user li:first-child {
   border-left: 0; 
 }
-.profile-user-page .data-user li:first-child a {
+ .data-user li:first-child a {
   border-bottom-left-radius: 0.3rem; 
   }
-.profile-user-page .data-user li:last-child a {
+ .data-user li:last-child a {
   border-bottom-right-radius: 0.3rem; 
 }
-.profile-user-page .data-user li a, .profile-user-page .data-user li strong {
+ .data-user li a,  .data-user li strong {
   display: block; 
 }
-.profile-user-page .data-user li a {
+ .data-user li a {
   background-color: #f7f7f7;
   border-top: 1px solid rgba(242,242,242,0.5);
   border-bottom: .2em solid #f7f7f7;
@@ -121,55 +92,23 @@ a {
   padding: .93em 0;
   color: #46494c; 
 }
-.profile-user-page .data-user li a strong, .profile-user-page .data-user li a span {
+ .data-user li a strong,  .data-user li a span {
   font-weight: 600;
   line-height: 1; 
 }
-.profile-user-page .data-user li a strong {
+ .data-user li a strong {
   font-size: 2em; 
 }
-.profile-user-page .data-user li a span {
+ .data-user li a span {
   color: #717a7e; 
 }
-.profile-user-page .data-user li a:hover {
+ .data-user li a:hover {
   background: rgba(0, 0, 0, 0.05);
   border-bottom: .2em solid #3498db;
   color: #3498db; 
 }
-.profile-user-page .data-user li a:hover span {
+.data-user li a:hover span {
   color: #3498db; 
 }
-
-footer h4 {
-  display: block;
-  text-align: center;
-  clear: both;
-  font-family: "Coda", sans-serif;
-  color: #566965;
-  line-height: 6;
-  font-size: 1em;
-}
-footer h4 a {
-  text-decoration: none;
-  color: #3498db;
-}
-
-
-
-  li{
-    list-style-type: none;
-    width: 30%;
-    top: 3%;
-    left: 3%;
-    transform: translate(0%,  0%);
-    vertical-align: top;
-  
-  }
-  .result {
-    float: left;
-    width: 33%;
-    /* margin-right: 1.33%; */
-    margin-bottom: 3%;
-  }
   
   

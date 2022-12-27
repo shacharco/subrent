@@ -10,15 +10,15 @@ let passport 	= require("passport");
 let express 	= require("express");
 const bodyParser = require("body-parser");
 
-// let mailer 		= require("../libs/mailer");
-let User 		= require("../components/user/User.js");
-// let Response 	= require("../core/response");
+let User 		= require("../components/user/User.js").User;
+const {createUser} = require("../components/user");
+
 const {signup, forgot} = require("../components/user/local.js");
 
-let authRouter = express.Router();
-authRouter.use(bodyParser.json());
+let router = express.Router();
+router.use(bodyParser.json());
 
-authRouter.post("/local", function(req, res, next) {
+router.get("/local", function(req, res, next) {
 
     // req.assert("username", req.t("UsernameCannotBeEmpty")).notEmpty();
 
@@ -144,6 +144,26 @@ authRouter.post("/local", function(req, res, next) {
 
         // ]);
     }
+    req.body.username = "admin";
+    req.body.password = "admin";
+    req.body.email = "admin@gmail.com";
+    req.body.id = "admin@gmail.com";
+    passport.authenticate('local', function(err, user, info) {
+        if(err){
+            return next(err);
+        }
+        if (!user) {
+            req.flash("error", { msg: info.message });
+            return res.redirect("/login");
+        }    
+        req.logIn(user, async function (err){
+            if(err){
+                return next(err);
+            }
+                res.redirect("/");
+        });
+    })(req, res, next);
+
 
 });
 
@@ -152,28 +172,54 @@ authRouter.post("/local", function(req, res, next) {
  *
  * Available scopes: https://developers.google.com/+/web/api/rest/oauth#authorization-scopes
  */
-authRouter.get("/google", passport.authenticate("google", {
-    scope: "profile email"
-    /*scope: [
-        'https://www.googleapis.com/auth/plus.login',
-        'https://www.googleapis.com/auth/plus.profile.emails.read'
-    ]*/
+// router.get("/google", passport.authenticate("google", {
+//     scope: "profile email"
+//     /*scope: [
+//         'https://www.googleapis.com/auth/plus.login',
+//         'https://www.googleapis.com/auth/plus.profile.emails.read'
+//     ]*/
+// }));
+
+// router.get("/google/callback", passport.authenticate("google", {
+//     failureRedirect: "/login"
+// }), function(req, res) {
+//     // req.logIn();
+//     res.redirect("/");
+// });
+router.get('/google',
+  passport.authenticate('google', { scope: [ 'email', 'profile' ]
 }));
 
-authRouter.get("/google/callback", passport.authenticate("google", {
-    failureRedirect: "/login"
-}), function(req, res) {
-    res.redirect("/");
-});
+
+router.get("/google/callback", (req, res, next) => {
+    passport.authenticate("google", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.redirect("/login");
+      }
+      req.logIn(user, async (err) => {
+        if (err) {
+          return next(err);
+        }
+        const returnTo = req.session.returnTo;
+        delete req.session.returnTo;
+        let userData = await createUser(user.displayName, user.email, "google", user.phone);
+        res.redirect(returnTo || "/");
+      });
+    })(req, res, next);
+  });
+
 
 /**
  * Facebook authentication routes
  */
-authRouter.get("/facebook", passport.authenticate("facebook", {
+router.get("/facebook", passport.authenticate("facebook", {
     scope: ["email", "user_location"]
 }));
 
-authRouter.get("/facebook/callback", passport.authenticate("facebook", {
+router.get("/facebook/callback", passport.authenticate("facebook", {
     failureRedirect: "/login"
 }), function(req, res) {
     res.redirect("/");
@@ -182,9 +228,9 @@ authRouter.get("/facebook/callback", passport.authenticate("facebook", {
 /**
  * Twitter authentication routes
  */
-authRouter.get("/twitter", passport.authenticate("twitter"));
+router.get("/twitter", passport.authenticate("twitter"));
 
-authRouter.get("/twitter/callback", passport.authenticate("twitter", {
+router.get("/twitter/callback", passport.authenticate("twitter", {
     failureRedirect: "/login"
 }), function(req, res) {
     res.redirect("/");
@@ -193,20 +239,20 @@ authRouter.get("/twitter/callback", passport.authenticate("twitter", {
 /**
  * Github authentication routes
  */
-authRouter.get("/github", passport.authenticate("github", {
+router.get("/github", passport.authenticate("github", {
     scope: "user:email"
 }));
 
-authRouter.get("/github/callback", passport.authenticate("github", {
+router.get("/github/callback", passport.authenticate("github", {
     failureRedirect: "/login"
 }), function(req, res) {
     res.redirect("/");
 });	
 
-authRouter.get("/logout", (req,res) => {
+router.get("/logout", (req,res) => {
     req.logOut();
     req.session.destroy();
     res.redirect("/");
  })
 
-module.exports = authRouter;
+module.exports = router;

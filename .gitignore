@@ -107,3 +107,6 @@ dist
 # Secret
 client_secret*
 env.yml
+
+# files
+/uploads/*

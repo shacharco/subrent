@@ -36,14 +36,15 @@ service db {
   }
     message Rental { 
         string id = 0;
-        string email = 1;
+        string user = 1;
         string phone = 2;
         string location = 3;
         string quantity = 4;
         string category = 5;
         string name = 6;
         uint32 price = 7;
-        google.protobuf.Timestamp timestamp = 8;
+        string image = 8;
+        google.protobuf.Timestamp timestamp = 9;
     }
 
     message Comment { 
