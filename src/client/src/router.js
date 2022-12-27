@@ -4,6 +4,7 @@ import Home from './components/Home.vue';
 import Find from './components/Find.vue';
 import Post from './components/Post.vue';
 import User from './components/User.vue';
+import Signup from './components/Signup.vue';
 import Product from './components/Product.vue';
 
 const routes = [
@@ -11,6 +12,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
   },
   {
     path: '/find',

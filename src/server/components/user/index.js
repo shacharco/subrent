@@ -13,6 +13,10 @@ async function getUserByEmail(email){
     let user = await data_client.getUser({query: JSON.stringify({"email": email})});
     return user;
 }
+async function getUser(id){
+    let user = await data_client.getUser({query: JSON.stringify({"_id": id})});
+    return user;
+}
 async function getUsers(){
     let users = await data_client.listUsers({query: JSON.stringify({})});
     return users;
@@ -35,4 +39,4 @@ async function reset(email){
     }
 
 }
-module.exports = {getUserByEmail, getUserRentals, removeUserRental, getUsers, createUser, reset};
+module.exports = {getUserByEmail, getUserRentals, removeUserRental, getUsers, getUser, createUser, reset};

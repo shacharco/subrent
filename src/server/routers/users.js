@@ -14,6 +14,12 @@ router.get("/currentUser/", checkAuthenticated, async function(req, res){
 router.get("/userRentals/", checkAuthenticated, async function(req, res){
   try {
     let rentals = await user.getUserRentals(req.user.email);
+    rentals.forEach(rental => {
+      if(rental.image){
+        let image_path = rental.image.split("\\");
+        rental.image = `/uploads/${image_path[image_path.length-1]}`;  
+      }
+    });
     res.send(rentals);
   } catch(error) {
     logger.err(error);

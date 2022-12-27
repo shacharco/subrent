@@ -1,4 +1,6 @@
 const db = require("./db.js");
+const fs = require("fs");
+const path = require("path");
 const {serialize: serialize, deserialize: deserialize} = require("./serializer.js");
 const RentalsSchema = require("./schemas/RentalsSchema.js");
 const CommentsSchema = require("./schemas/CommentsSchema.js");
@@ -48,7 +50,15 @@ async function getUser(call, callback) {
 async function deleteRental(call, callback) {
     let query = new Query(serialize(call.request));
     let response = new Response(deserialize(await db.remove(query.query, RentalsSchema)));
+    if(response.value){
+        removeRentalFiles(query.query);
+    }
     callback(null, response.toJson());
+}
+function removeRentalFiles(rental){
+    if(rental.image){
+        let res = fs.unlinkSync(path.join(__dirname, "../../../", rental.image));
+    }
 }
 async function deleteComment(call, callback) {
     let query = new Query(serialize(call.request));

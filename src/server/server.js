@@ -28,6 +28,8 @@ app.use(expressSession({
 }));
 
 app.use('/assets', express.static(path.join(__dirname, '../client/dist/assets')));
+console.log(path.join(__dirname, '../uploads'));
+app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
 
 // define the home page route
 app.get("/", function(req, res){
@@ -47,6 +49,10 @@ app.get("/user", function(req, res){
 });
 // define the home page route
 app.get("/register", function(req, res){
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+// define the home page route
+app.get("/product/:id", function(req, res){
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 

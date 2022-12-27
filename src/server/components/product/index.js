@@ -16,9 +16,19 @@ async function createComment(productId, text, userID){
 }
 async function createRental(productInput){
     // let sanitizedProductInput = sanitizer.escapeJSON(sanitize(productInput));
-    let product = new Product(productInput.name, productInput.price, productInput.user, productInput.phone, productInput.location, productInput.category, productInput.quantity);
+    let product = new Product(productInput.name, productInput.price, productInput.email, productInput.phone, productInput.location, productInput.category, productInput.quantity, productInput.image);
     let result = await data_client.createRental(product.toJson());
     return result;
+}
+async function deleteRental(productId, user){
+    // let sanitizedProductInput = sanitizer.escapeJSON(sanitize(productInput));
+    // let product = new Product(productInput.name, productInput.price, productInput.email, productInput.phone, productInput.location, productInput.category, productInput.quantity, productInput.image);
+    let result = false;
+    let rental = await getRentalById(productId);
+    if(rental.user == user.email){
+        result = await data_client.deleteRental(rental);
+    }
+    return result.value;
 }
 async function getRentals(search){
     let rentals = await data_client.listRentals({query: search});
@@ -31,12 +41,11 @@ async function getRentalById(rentalID){
 async function getComments(productId){
     let comments = await data_client.listComments({query: JSON.stringify({"product": productId})});
     comments = comments.list?comments.list:[];
-    comments.map(async comment => {
-      delete comment["id"];
-      let commentUser = await data_client.getUser({query: JSON.stringify({"id": comment.user})});
-      comment.username = commentUser?.username;
-  
-    });
+    for (let comment of comments) {
+        delete comment["id"];
+        let commentUser = await data_client.getUser({query: JSON.stringify({"id": comment.user})});
+        comment.username = commentUser?.name;  
+    }
     return comments;
 }
 async function getRating(productId){
@@ -47,4 +56,4 @@ async function getRating(productId){
     return avg;
 }
 
-  module.exports = {createComment, createRental, createRating, getRentals, getRentalById, getComments, getRating};
+  module.exports = {createComment, createRental, deleteRental, createRating, getRentals, getRentalById, getComments, getRating};

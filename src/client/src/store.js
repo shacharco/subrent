@@ -15,7 +15,7 @@ const store = new createStore({
   },
   actions: {
     addUser: async function(context, payload){
-      const user = await fetchJson("/auth/local", payload);
+      const user = await fetchJson("/api/currentUser", null, "GET");
       console.log(user)
       context.commit("UPDATE_USER", user);
 

@@ -1,14 +1,17 @@
 <template lang="pug">
 main.et-main
-    div#main
-        div.wrap
-            div.search
-                input.searchTerm#searchTerm(type="text" placeholder="What are you looking for?")
-                button.searchButton#searchButton(type="submit" v-on:click="handleSearch($event)")
-                    i.fa search
-        div#results
-                li.result(v-for="rental in rentals")
-                    card(:rental="rental")
+  div.app
+    div.top-aligner
+      div.search-bar-wrapper
+        div.search-bar(style="background-color: rgba(0,0,0, 0.2)")
+          button.white.settings-button(type="button")
+            i filter
+          input#search-bar-input.bar-input.white(autocomplete="off" placeholder="Search" type="text" v-on:keyup.enter="handleSearch($event)")
+          button.white.settings-button(type="button")
+            i sort
+    div.results-wrapper
+      div.results
+        card(:rental="rental" v-for="rental in rentals")
 </template>
 
 <script>
@@ -44,7 +47,7 @@ export default {
 		},
 		handleSearch: async function (event){
 			event.preventDefault();
-			const searchTerm = document.getElementById("searchTerm");
+			const searchTerm = document.getElementById("search-bar-input");
 			const url = "/api/rentals";
 			try {
 				const query = {search: JSON.stringify({"name": searchTerm.value})};
@@ -61,5 +64,35 @@ export default {
 </script>
 
 <style scoped>
-    @import '../css/search.css';
+@import '../css/template.css';
+
+
+#search-bar-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+.search-bar-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+  width: 70%;
+}
+.search-bar {
+  align-items: center;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  display: flex;
+  gap: 2%;
+  justify-content: center;
+  padding: 2%;
+  pointer-events: all;
+  position: relative;
+  width: 100%;
+}
+
+
+
+
 </style>

@@ -5,20 +5,20 @@ main.et-main
             div.profile-user-page.card#user-profile
                 div.img-user-profile
                     img.profile-bgHome(src="https://www.incharge.org/wp-content/uploads/2019/08/lower-rent.jpg")
-                    img.avatar(v-bind:src="$store.state.user.picture" :alt="$store.state.user.displayName + ' image'")
-                //- button Follow
+                    img.avatar(v-bind:src="$store.state.user.picture" :alt="$store.state.user.name + ' image'")
                 div.user-profile-data
-                    h1 {{$store.state.user.displayName}}
-                    p Your user
+                    h1.subtitle {{$store.state.user.name}}
+                    label Your user
                 div.description-profile Renterer
-                ul.data-user
-                    li
-                        a(v-on:click="showResults()")
-                            strong(v-if="user.rentals") {{user.rentals.length}}
-                            span Your Rentals
-                div(v-if="toShowResults")
-                    li.result(v-for="rental in user.rentals")
-                        card(:rental="rental")
+                    ul.data-user.wide
+                        li
+                            a(v-on:click="showResults()")
+                                strong(v-if="user.rentals") {{user.rentals.length}}
+                                span Your Rentals
+                    div(v-if="toShowResults")
+                        div.results-wrapper
+                            div.results
+                                card(:rental="rental" v-for="rental in user.rentals")
 </template>
 
 <script>
@@ -57,7 +57,8 @@ export default {
 			});
 		},
 		showResults: function (){
-			this.toShowResults = !this.toShowResults;
+            this.toShowResults = !this.toShowResults;
+            console.log("show results " + this.toShowResults);
 		},
 		getRentals: async function () {
 			return await fetchJson("/api/userRentals", null, "GET");
@@ -68,5 +69,6 @@ export default {
 </script>
 
 <style scoped>
-    @import "../css/users.css"
+    @import "../css/users.css";
+
 </style>
