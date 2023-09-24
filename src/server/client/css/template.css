@@ -1,0 +1,313 @@
+@import '../css/font-awesome-4.7.0/css/font-awesome.css';
+
+
+/* general settings */
+.container{
+    width: 100%;
+    /* max-width: 1170px; */
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* specific generals */
+  /* results */
+  .results-wrapper {
+    margin: auto;
+    width: 100%;
+    /* margin-top: 130px; */
+    /* max-width: 1000px; */
+    position: relative;
+    z-index: 2;
+  }
+  .results {
+    display: grid;
+    gap: 10px;
+    grid-auto-rows: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    padding: 10px;
+    padding-bottom: 50px;
+  }
+  /* icon */
+  .clickable-icon {
+    color: #e93731;
+    font-size: 22px;
+    line-height: 41px;
+  }
+  
+  .clickable-icon:hover {
+    animation: move 0.3s;
+  }
+  /* bar */
+  .bar-input {
+    width: 100%;
+  }
+  /* buttons */
+  .settings-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    outline: none;
+    position: relative;
+    z-index: 3;
+  }
+  .settings-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .main-button {
+    width: 60%;
+margin: 5px 0;
+padding: 5px;
+border-radius: 1em;
+border: 1px solid #eee;
+color: #666;
+font-weight: 100;
+letter-spacing: 1px;
+cursor: pointer;
+background: #44E19F;
+color: #fff;
+border: none;
+}
+button:hover {
+  transition: opacity .3s ease-in;
+  opacity: .7;
+}
+/* text */
+label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+ font-size: 125%;
+opacity: 0.5;
+padding-top : 5%;
+padding-bottom : 5%;
+}
+.subtitle {
+ font-weight: 500;
+ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+ font-size: 300%;
+}
+  /* hero */
+  .hero{
+      width: 100%;
+      margin-left: 10%;
+      margin-right: 10%;
+    padding-top: 112px;
+    padding-bottom: 112px;
+    background:  linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 40%,rgba(0,0,0,0) 100%), url(https://st2.depositphotos.com/3580719/9492/v/950/depositphotos_94929442-stock-illustration-seamless-background-with-simple-hand.jpg) no-repeat right bottom;
+  }
+  .hero-subtitle{
+    font-family: "Open Sans";
+    font-size: 32px;
+    font-weight: 400;
+  }
+  .hero-title{
+    font-size: 45px;
+    font-weight: 800;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  .hero-description{
+    font-size: 18px;
+    color: #6a696b;
+  }
+  .hero-social{
+    margin-top: 30px;
+  }
+  .hero-buttons{
+    margin-top: 40px;
+  }
+  /* social */
+  .social{
+    display: inline-block;
+    width: 41px;
+    height: 41px;
+    margin-right: 10px;
+    color: #fff;
+    text-align: center;
+    line-height: 41px;
+  }
+  
+  .vk-bg{
+    background-color: #56acef;
+  }
+  .facebook-bg{
+    background-color: #3a5898;
+  }
+  .instagram-bg{
+    background-color: #13578a;
+  }
+
+/* general meta */
+  .footer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    /* background-color: #2b2a2c; */
+    padding: 20px 0;
+    color: #8d8d8e;
+      margin-top: auto;
+  }
+  .footer a{
+    color: #8d8d8e;
+    text-decoration: none;
+  }
+  .footer-info{
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer-text{
+    display: flex;
+    align-items: center;
+  }
+  .copyright{
+    padding-right: 16px;
+    margin-right: 16px;
+    border-right: 1px solid #413f41;
+    font-size: 14px;
+  }
+  .footer-social-link{
+    font-size: 20px;
+    margin-right: 13px;
+  }
+  .footer-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+  }
+  .footer-menu a{
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 30px;
+  }
+  .footer-button{
+    font-size: 14px;
+    background-color: transparent;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid #8d8d8e;
+    color: #2b2b2b;
+    padding: 5px 24px;
+    margin-right: 34px;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  body {
+      overflow-x: hidden;
+        -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+
+  
+  }
+  img{
+    max-width: 100%;
+  }
+  .button{
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    background-color: #2b2a2c;
+    border-radius: 50px;
+    padding: 20px 34px;
+    
+  }
+  .button-primary{
+    color: #fff;
+    margin-right: 17px;
+    margin-bottom: 10px;
+  }
+  .button-o{
+    background-color: #fff;
+    color: #6a696b;
+    border: 1px solid #6a696b; 
+  }
+
+  /* addons */
+  .white {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1em;
+  outline: none;
+}
+.white::placeholder {
+  color: white;
+}
+.centarlized {
+    align-items: center;
+}
+.sparsed {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 100%;
+}
+.top-aligner {
+    margin-top: 2%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* width: 100%; */
+    z-index: 3;
+  }
+  .rounded {
+      box-sizing: border-box;
+      box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);  
+}
+.form-box {
+    display: block;
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: #fff;
+  }
+  .box-shadow {
+    -webkit-box-shadow: 0 0 35px 0 rgba(0, 0, 0, .15);
+       -moz-box-shadow: 0 0 35px 0 rgba(0, 0, 0, .15);
+            box-shadow: 0 0 35px 0 rgba(0, 0, 0, .15);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.vert{
+  display: flex;
+  align-items: center;
+box-sizing: border-box;
+flex-direction: column;
+}
+.horz{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+box-sizing: border-box;
+flex-direction: row;
+}
+.wide {
+  width: 100%;
+}
+.long {
+  height: 100%;
+}
+.large-text {
+  font-size: 20px;
+}
+.centered-text {
+  text-align: center;
+}
+.fit {
+  block-size: 0;
+}

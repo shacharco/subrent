@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+service db {
+    rpc CreateRental(Rental) returns (Rental) {}
+    rpc CreateComment(Comment) returns (Comment) {}
+    rpc CreateRating(Rating) returns (Rating) {}
+    rpc CreateUser(User) returns (User) {}
+
+    rpc ListRentals(Query) returns (Rentals) {}
+    rpc ListComments(Query) returns (Comments) {}
+    rpc ListRatings(Query) returns (Ratings) {}
+    rpc ListUsers(Query) returns (Users) {}
+
+    rpc GetRental(Query) returns (Rental) {}
+    rpc GetUser(Query) returns (User) {}
+
+    rpc DeleteRental(Rental) returns (Response) {}
+    rpc DeleteComment(Comment) returns (Response) {}
+    rpc DeleteRating(Rating) returns (Response) {}
+    rpc DeleteUser(User) returns (Response) {}
+
+  }
+  message Rentals {
+      repeated Rental list = 1;
+  }
+  message Comments {
+      repeated Comment list = 1;
+  }
+  message Ratings {
+      repeated Rating list = 1;
+  }
+  message Users {
+      repeated User list = 1;
+  }
+    message Rental { 
+        string id = 0;
+        string user = 1;
+        string phone = 2;
+        string location = 3;
+        string quantity = 4;
+        string category = 5;
+        string name = 6;
+        uint32 price = 7;
+        string image = 8;
+        google.protobuf.Timestamp timestamp = 9;
+    }
+
+    message Comment { 
+        string id = 0;
+        string product = 1;
+        string user = 2;
+        string text = 3;
+        google.protobuf.Timestamp timestamp = 4;
+    }
+
+    message Rating { 
+        string id = 0;
+        string product = 1;
+        string user = 2;
+        uint32 value = 3;
+        google.protobuf.Timestamp timestamp = 4;
+    }
+
+    message User { 
+        string id = 0;
+        string name = 1;
+        string email = 2;
+        string password = 3;
+        string phone = 4;
+        google.protobuf.Timestamp timestamp = 5;
+    }
+
+    message Query {
+        string query = 0;
+    }
+
+    message Response { 
+        bool value = 0; 
+    }

@@ -1,0 +1,9 @@
+routers: "./Routers"
+port: 8080
+db_connection_string: "mongodb://localhost:27017/release"
+authKeys:
+  google:
+    clientID: "682669137976-g4okfnv7rfdkvd00crlmah2p2767075j.apps.googleusercontent.com"
+    clientSecret: "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"
+    # clientID: "$GOOGLE_CLIENT_ID"
+    # clientSecret: "$GOOGLE_CLIENT_SECRET"

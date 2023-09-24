@@ -1,0 +1,35 @@
+
+.content-profile-page {
+  margin: 1em auto;
+  width: 44.23em;
+}
+
+.profile-user-page.card {
+  background: #fff;
+  border-radius: 0.3rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  border: .1em solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 1em; 
+}
+
+.img-user-profile {
+	margin: 0 auto;
+  text-align: center; 
+}
+ .img-user-profile .profile-bgHome {
+	border-bottom: .2em solid #f5f5f5;
+  width: 44.23em;
+  height: 16em;
+  }
+ .img-user-profile .avatar {
+	margin: 0 auto;
+  background: #fff;
+  width: 7em;
+  height: 7em;
+  padding: 0.25em;
+  border-radius: .4em;
+  margin-top: -10em;
+  box-shadow: 0 0 .1em rgba(0, 0, 0, 0.35);
+}
+
+

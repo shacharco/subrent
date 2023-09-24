@@ -1,0 +1,166 @@
+@keyframes fadeInAndExpand {
+  from {
+    opacity: 0;
+    transform: scale(0.25);
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(720deg);
+  }
+  to {
+    transform: rotate(1440deg);
+  }
+}
+
+#app {
+  overflow: hidden;
+}
+#app #search-bar-aligner {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  pointer-events: none;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+}
+#app #search-bar-aligner.focused #search-bar-wrapper #search-bar #search-bar-logo:after, #app #search-bar-aligner.querying #search-bar-wrapper #search-bar #search-bar-logo:after, #app #search-bar-aligner.searching #search-bar-wrapper #search-bar #search-bar-logo:after {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+#app #search-bar-aligner.focused #search-bar-wrapper #search-bar #search-bar-input, #app #search-bar-aligner.querying #search-bar-wrapper #search-bar #search-bar-input, #app #search-bar-aligner.searching #search-bar-wrapper #search-bar #search-bar-input {
+  width: 100%;
+}
+#app #search-bar-aligner.focused #search-bar-wrapper #search-bar #search-bar-input::placeholder, #app #search-bar-aligner.querying #search-bar-wrapper #search-bar #search-bar-input::placeholder, #app #search-bar-aligner.searching #search-bar-wrapper #search-bar #search-bar-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+#app #search-bar-aligner.searching {
+  position: relative;
+}
+#app #search-bar-aligner #search-bar-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+  width: 70%;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar {
+  align-items: center;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  display: flex;
+  gap: 2%;
+  justify-content: center;
+  padding: 2%;
+  pointer-events: all;
+  position: relative;
+  width: 100%;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-clicker {
+  cursor: pointer;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 2;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-logo {
+  color: white;
+  flex-shrink: 0;
+  font-size: 0.9em;
+  padding: 2%;
+  position: relative;
+  text-align: center;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-logo:after {
+  background-color: white;
+  content: "";
+  position: absolute;
+  right: -2%;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: height 250ms, width 250ms, right 250ms, background-color 250ms;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1em;
+  outline: none;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-input::placeholder {
+  color: white;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-sort-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  outline: none;
+  position: relative;
+  z-index: 3;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-sort-button:hover, #app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-sort-button:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-sort-button i {
+  color: white;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-filter-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  outline: none;
+  position: relative;
+  z-index: 3;
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-filter-button:hover, #app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-filter-button:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+#app #search-bar-aligner #search-bar-wrapper #search-bar #search-bar-filter-button i {
+  color: white;
+}
+#app #search-results-wrapper {
+  margin: auto;
+  width: 100%;
+  /* margin-top: 130px; */
+  /* max-width: 1000px; */
+  position: relative;
+  z-index: 2;
+}
+#app #search-results {
+  display: grid;
+  gap: 10px;
+  grid-auto-rows: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  padding: 10px;
+  padding-bottom: 50px;
+}
