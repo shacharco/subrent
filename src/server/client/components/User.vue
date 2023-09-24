@@ -6,15 +6,11 @@ main.et-main
                 div.img-user-profile
                     img.profile-bgHome(src="https://www.incharge.org/wp-content/uploads/2019/08/lower-rent.jpg")
                     img.avatar(v-bind:src="$store.state.user.picture" :alt="$store.state.user.name + ' image'")
-                div.user-profile-data
+                div.centered-text
                     h1.subtitle {{$store.state.user.name}}
                     label Your user
-                div.description-profile Renterer
-                    ul.data-user.wide
-                        li
-                            a(v-on:click="showResults()")
-                                strong(v-if="user.rentals") {{user.rentals.length}}
-                                span Your Rentals
+                div.centered-text Renterer
+                    StrongMinimized(:rentals="user.rentals" v-on:click="showResults()")
                     div(v-if="toShowResults")
                         div.results-wrapper
                             div.results
@@ -24,10 +20,12 @@ main.et-main
 <script>
 import { fetchJson } from "../js/utils.js";
 import card from "./Card.vue"
+import StrongMinimized from "./StrongMinimized.vue"
 export default {
     name: 'User',
     components: {
-        card
+        card,
+        StrongMinimized
     },
     data() {
         return {

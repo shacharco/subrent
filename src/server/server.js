@@ -5,6 +5,7 @@ var config = yaml_config.load(fs.readFileSync(path.join(__dirname, 'config.yml')
 const express = require('express');
 const cookieParser	= require("cookie-parser");
 const expressSession = require("express-session");
+const logger = require("./utils/logger.js");
 const app = express();
 
 app.use(cookieParser());
@@ -27,33 +28,33 @@ app.use(expressSession({
     }
 }));
 
-app.use('/assets', express.static(path.join(__dirname, '../client/dist/assets')));
-console.log(path.join(__dirname, '../uploads'));
+app.use('/assets', express.static(path.join(__dirname, './client/dist/assets')));
+logger.info(path.join(__dirname, '../uploads'));
 app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
 
 // define the home page route
 app.get("/", function(req, res){
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 // define the home page route
 app.get("/find", function(req, res){
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 // define the home page route
 app.get("/post", function(req, res){
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 // define the home page route
 app.get("/user", function(req, res){
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 // define the home page route
 app.get("/register", function(req, res){
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 // define the home page route
 app.get("/product/:id", function(req, res){
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, './client/dist/index.html'));
 });
 
 const {init} = require("./routers/auth/helper.js");

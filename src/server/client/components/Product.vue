@@ -42,7 +42,7 @@ main.et-main
             div.product-image
                 img(v-if="rental" :src="img", :alt="rental.category")
                 div.renterer(v-if="$store.state.user?.email == rental.user")
-                    button.fa.fa-remove.remove-button(@click="removeItem()")
+                    button.fa.fa-remove.remove-button.clickable-icon(@click="removeItem()")
 </template>
 
 <script>

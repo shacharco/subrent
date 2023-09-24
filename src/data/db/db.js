@@ -8,7 +8,7 @@ const logger = require("../../server/utils/logger.js");
 mongoose.connect(config.db_connection_string, { useUnifiedTopology: true, useNewUrlParser: true }, (err) => {
     if(err){
         
-        logger.err(err)
+        logger.error(err)
     }else{
         logger.info("connected")
     }

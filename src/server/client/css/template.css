@@ -28,7 +28,16 @@
     padding: 10px;
     padding-bottom: 50px;
   }
+  /* icon */
+  .clickable-icon {
+    color: #e93731;
+    font-size: 22px;
+    line-height: 41px;
+  }
   
+  .clickable-icon:hover {
+    animation: move 0.3s;
+  }
   /* bar */
   .bar-input {
     width: 100%;
@@ -289,4 +298,16 @@ flex-direction: row;
 }
 .wide {
   width: 100%;
+}
+.long {
+  height: 100%;
+}
+.large-text {
+  font-size: 20px;
+}
+.centered-text {
+  text-align: center;
+}
+.fit {
+  block-size: 0;
 }

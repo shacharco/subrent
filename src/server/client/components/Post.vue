@@ -6,7 +6,7 @@ main.et-main
             form.bar-input.form-box.box-shadow(v-on:submit.prevent="handleFormSubmit($event)" enctype="multipart/form-data")
                 
                 div.form-group(v-for="info in formInfo")
-                    input.form-control.form-box(:name="info.name" :type="info.type" :placeholder="info.placeHolder" required)
+                    input.form-control.form-box.fit(:name="info.name" :type="info.type" :placeholder="info.placeHolder" required)
                     span.form-icon-style.form-icon-position01
                         i.fa.fa-user(aria-hidden=true) 
                 div.form-group(v-for="info in formInfoDropdowns")
@@ -18,13 +18,13 @@ main.et-main
                 div.form-group.photo
                     img.box-shadow.img-responsive.image-size(:src="previewImage")
                     div.photo-upload.box-shadow
-                        i.fa.fa-upload(aria-hidden=true @click="clickChild")
+                        i.fa.fa-upload.clickable-icon(aria-hidden=true @click="clickChild")
                           input.fa.fa-upload(style="display: none; width: 0%;" name="image" type="file" accept="image/jpeg" @change="uploadImage" aria-hidden=true)
                 //- div
                 //-     input.option-input.checkbox(name="terms" type="checkbox" id="test" required)
                 //-     label(for="test") Accept the 
                 //-         a(href="#terms" style="text-decoration: none; color: inherit; ") terms
-                button(type="submit") Post a Rent
+                button.main-button.wide.long.large-text(type="submit") Post a Rent
 </template>
 
 <script>
@@ -81,8 +81,6 @@ export default {
 
 <style scoped>
 @import '../css/template.css';
-    /* @import "../css/post.css"; */
-
 
 @keyframes move {
     0%   {
@@ -141,7 +139,7 @@ export default {
   }
 }
 
-    .photo {
+.photo {
   /* display: inline-block; */
   position: relative;
   display: flex;
@@ -173,32 +171,11 @@ export default {
     border-radius: 50%;
 }
 
-/* .photo-upload input{
-    cursor: pointer;
-    width: 80%;
-    height: 100%;
-
-} */
-.photo-upload i {
-  color: #e93731;
-  font-size: 22px;
-  line-height: 41px;
-}
-
-.photo-upload i:hover {
-  animation: move 0.3s;
-}
-
 .form-group {
   position: relative;
   width: 100%;
     margin-top: 1%;
 
-}
-.form-box {
-  display: block;
-  margin: 0 auto;
-  background-color: #fff;
 }
 .form-control {
     box-sizing:border-box;
@@ -234,13 +211,6 @@ export default {
     left: 0;
 }
 
-.form-icon-position02 {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 100;
-    
-}
 
 .form-control:focus + .form-icon-style{
   color: #39ac70;
@@ -256,55 +226,9 @@ a.form-icon-style:focus {
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(57, 172, 112, .5);
 }
 
-
-
-
-
-
-
-
-    .vert{
-  display: flex;
-  align-items: center;
-box-sizing: border-box;
-flex-direction: column;
-}
-.horz{
-  display: flex;
-  align-items: center;
-  justify-content: left;
-box-sizing: border-box;
-flex-direction: row;
-}
-.container {
-  display: flex;
-  justify-content: space-between;
-
-}
-#main{
-      overflow: hidden;
-
-}
-.product-info{
-    width: 50%;
-        overflow-y: scroll;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    text-align: center!important;
-    height: 90vh;
-}
-.product-info::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.product-info {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
 img {
-            max-width: 100%;
-        max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 
 }
 .product-image {
@@ -313,79 +237,5 @@ img {
     scroll-behavior: smooth;
     height: 90vh;
     overflow: hidden;
-}
-label {
-     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    font-size: 125%;
-   opacity: 0.5;
-   padding-top : 5%;
-   padding-bottom : 5%;
-}
-.subtitle {
-    font-weight: 500;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    font-size: 300%;
-}
-.desc {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    font-size: 100%;
-}
-.price {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    font-size: 100%;
-    padding: 1%;
-}
-button {
-  margin: 5px 0;
-  border-radius: 1em;
-  border: 1px solid #eee;
-  color: #666;
-  font-weight: 100;
-  letter-spacing: 1px;
-  cursor: pointer;
-  background: #44E19F;
-  color: #fff;
-  border: none;
-      box-sizing:border-box;
-width: 100%;
-
-    box-sizing:border-box;
-    width: 100%;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  padding: 5% 5%;
-  border-radius: 3em;
-
-}
-button:hover {
-  transition: opacity .3s ease-in;
-  opacity: .7;
-}
-input {
-    font-size: 16px;
-    block-size: 0;
-    grid-area: input;
-    display: block;
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    background-color: transparent;
-    padding: 3%;
-    margin: 1%; 
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.414;
-    position: relative;
-    box-shadow: inset 0 0 0 0 transparent;
-    -webkit-transition: box-shadow .25s ease;
-    transition: box-shadow .25s ease;
-    color: black;
-
-}
-form {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
 }
 </style>

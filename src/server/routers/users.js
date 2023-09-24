@@ -22,7 +22,7 @@ router.get("/userRentals/", checkAuthenticated, async function(req, res){
     });
     res.send(rentals);
   } catch(error) {
-    logger.err(error);
+    logger.error(error);
     res.send([]);
   }
 });
@@ -41,7 +41,7 @@ router.get("/userInfo", async function(req, res){
       res.send(undefined);
     }
   } catch(error) {
-    logger.err(error);
+    logger.error(error);
     res.send(undefined);
   }
 
